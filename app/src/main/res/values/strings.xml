@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GerenciadorFinanceiroSDM</string>
+    <string name="action_settings">Settings</string>
+    <string name="clique_no_bot_o_abaixo_para_adicionar_uma_conta">Clique no botão abaixo para adicionar uma conta</string>
+</resources>
