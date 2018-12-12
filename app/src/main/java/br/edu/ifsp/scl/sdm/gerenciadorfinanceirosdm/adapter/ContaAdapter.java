@@ -1,6 +1,5 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,16 +11,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.R;
+import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.adapter.listener.ContaClickListener;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model.Conta;
 
 public class ContaAdapter extends RecyclerView.Adapter<ContaAdapter.ContaViewHolder> {
 
     private List<Conta> contas;
-    private ItemClickListener clickListener;
+    private ContaClickListener listener;
 
-    public ContaAdapter(List<Conta> contas, ItemClickListener clickListener) {
+    public ContaAdapter(List<Conta> contas, ContaClickListener listener) {
         this.contas = contas;
-        this.clickListener = clickListener;
+        this.listener = listener;
     }
 
     @NonNull
@@ -44,7 +44,7 @@ public class ContaAdapter extends RecyclerView.Adapter<ContaAdapter.ContaViewHol
         return contas.size();
     }
 
-    public  class ContaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    class ContaViewHolder extends RecyclerView.ViewHolder {
 
         final TextView nomeContaTextView;
         final TextView saldoContaTextView;
@@ -55,24 +55,9 @@ public class ContaAdapter extends RecyclerView.Adapter<ContaAdapter.ContaViewHol
             nomeContaTextView = view.findViewById(R.id.nomeContaTextView);
             saldoContaTextView = view.findViewById(R.id.saldoContaTextView);
             statusContaImageView = view.findViewById(R.id.statusContaImageView);
-            view.setOnClickListener(this);
-            view.setOnLongClickListener(this);
+            view.setOnClickListener((View v) -> listener.onContaClick(contas.get(getAdapterPosition())));
+            view.setOnLongClickListener((View v) -> listener.onContaLongClick(contas.get(getAdapterPosition())));
         }
-
-        @Override
-        public void onClick(View view) {
-            clickListener.onContaClick(contas.get(getAdapterPosition()));
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            return clickListener.onContaLongClick(contas.get(getAdapterPosition()));
-        }
-    }
-
-    public interface ItemClickListener {
-        void onContaClick(Conta conta);
-        boolean onContaLongClick(Conta conta);
     }
 
 }

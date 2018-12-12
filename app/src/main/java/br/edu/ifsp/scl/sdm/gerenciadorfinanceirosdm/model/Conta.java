@@ -1,12 +1,13 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Conta {
+public class Conta implements Serializable {
 
     private String nome;
     private BigDecimal saldo;

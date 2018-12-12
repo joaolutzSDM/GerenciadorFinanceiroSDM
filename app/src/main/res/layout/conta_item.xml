@@ -7,14 +7,14 @@
     android:layout_marginStart="@dimen/conta_card_margin"
     android:layout_marginEnd="@dimen/conta_card_margin"
     card_view:cardCornerRadius="@dimen/conta_card_radius"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    android:clickable="true"
+    android:focusable="true">
 
     <RelativeLayout
         android:id="@+id/rlComanda"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
         android:background="?android:attr/selectableItemBackground">
 
         <ImageView

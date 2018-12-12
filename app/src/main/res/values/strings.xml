@@ -8,4 +8,8 @@
     <string name="btnCancelar">Cancelar</string>
     <string name="adicionar_conta">Adicionar Conta</string>
     <string name="saldo_total">Saldo total</string>
+
+    <string-array name="gerenciar_conta">
+        <item>Remover Conta</item>
+    </string-array>
 </resources>

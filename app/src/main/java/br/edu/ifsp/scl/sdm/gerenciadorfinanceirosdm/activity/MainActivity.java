@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,9 +21,10 @@ import java.util.List;
 
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.R;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.adapter.ContaAdapter;
+import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.adapter.listener.ContaClickListener;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model.Conta;
 
-public class MainActivity extends AppCompatActivity implements ContaAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity implements ContaClickListener {
 
     private static List<Conta> contas;
     private TextView emptyListTextView;
@@ -102,12 +104,16 @@ public class MainActivity extends AppCompatActivity implements ContaAdapter.Item
 
     @Override
     public void onContaClick(Conta conta) {
-
+        Toast.makeText(this, "Clicou na conta",Toast.LENGTH_LONG).show();
     }
 
     @Override
     public boolean onContaLongClick(Conta conta) {
-        return false;
+        showListDialog(R.array.gerenciar_conta, (dialog, which) -> {
+            contas.remove(conta);
+            atualizarSaldoTotal();
+        });
+        return true;
     }
 
     private void atualizarSaldoTotal() {
@@ -116,6 +122,12 @@ public class MainActivity extends AppCompatActivity implements ContaAdapter.Item
             total = total.add(c.getSaldo());
         }
         saldoTotalTextView.setText(Conta.getSaldoString(total));
+    }
+
+    private void showListDialog(Integer listResId, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setItems(listResId, listener);
+        builder.show();
     }
 
 }
