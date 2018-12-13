@@ -3,6 +3,7 @@ package br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -71,19 +72,6 @@ public class MainActivity extends AppCompatActivity implements ContaClickListene
             Conta conta = new Conta();
             conta.setNome(nomeContaEditText.getText().toString());
             conta.setSaldo(new BigDecimal(saldoInicialEditText.getText().toString()));
-            //TODO REMOVER CÓDIGO - APENAS PARA TESTES
-            Transacao tr = new Transacao();
-            tr.setNome("Transação Teste");
-            tr.setNaturezaTransacao(NaturezaTransacao.CREDITO);
-            tr.setTipo("Salário");
-            tr.setValor(new BigDecimal(1800));
-            conta.getTransacoes().add(tr);
-            Transacao tr2 = new Transacao();
-            tr2.setNome("Transação Teste 2");
-            tr2.setNaturezaTransacao(NaturezaTransacao.DEBITO);
-            tr2.setTipo("Alimentação");
-            tr2.setValor(new BigDecimal(35));
-            conta.getTransacoes().add(tr2);
             contas.add(conta);
             if(emptyListTextView.getVisibility() == View.VISIBLE) {
                 emptyListTextView.setVisibility(View.INVISIBLE);
@@ -121,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements ContaClickListene
     public void onContaClick(Conta conta) {
         Intent i = new Intent(this, TransacaoActivity.class);
         i.putExtra("conta", conta);
-        startActivity(i);
+        startActivityForResult(i, 0);
     }
 
     @Override
@@ -131,6 +119,17 @@ public class MainActivity extends AppCompatActivity implements ContaClickListene
             atualizarSaldoTotal();
         });
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 0) {
+            Conta conta = (Conta) data.getSerializableExtra("conta");
+            //atualiza a conta
+            contas.set(contas.indexOf(conta), conta);
+            contasRecyclerView.getAdapter().notifyDataSetChanged();
+            atualizarSaldoTotal();
+        }
     }
 
     private void atualizarSaldoTotal() {

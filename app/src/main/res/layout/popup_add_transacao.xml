@@ -23,25 +23,22 @@
         android:layout_height="wrap_content" />
 
     <RadioGroup
+        android:id="@+id/naturezaTransacaoRadioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/creditoRadioButton"
                 android:text="@string/credito"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <RadioButton
+                android:id="@+id/debitoRadioButton"
                 android:text="@string/debito"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-        </LinearLayout>
 
     </RadioGroup>
 

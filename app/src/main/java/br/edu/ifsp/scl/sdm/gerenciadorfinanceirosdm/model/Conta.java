@@ -6,15 +6,21 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Conta implements Serializable {
 
+    private Integer id;
     private String nome;
     private BigDecimal saldo;
 
+    private static int increment = 1;
+
     private List<Transacao> transacoes;
 
-    public Conta() {
+    public Conta()
+    {
+        id = increment++;
         transacoes = new ArrayList<>();
     }
 
@@ -68,6 +74,19 @@ public class Conta implements Serializable {
 
     public boolean isSaldoPositivo() {
         return saldo.compareTo(BigDecimal.ZERO) >= 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Conta conta = (Conta) o;
+        return Objects.equals(id, conta.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }

@@ -8,11 +8,17 @@
     <string name="btnOK">OK</string>
     <string name="btnCancelar">Cancelar</string>
     <string name="adicionar_conta">Adicionar Conta</string>
+    <string name="adicionar_transacao">Adicionar Transação</string>
     <string name="saldo_total">Saldo total</string>
 
     <string-array name="gerenciar_conta">
         <item>Remover Conta</item>
     </string-array>
+
+    <string-array name="gerenciar_transacao">
+        <item>Remover Transação</item>
+    </string-array>
+
     <string name="title_activity_transacao">TransacaoActivity</string>
     <string name="valor_transacao">Valor Transação</string>
     <string name="nome_transacao">Nome Transação</string>
