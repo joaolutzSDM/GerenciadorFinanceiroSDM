@@ -1,8 +1,13 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_margin_default">16dp</dimen>
     <dimen name="conta_card_height">60dp</dimen>
     <dimen name="conta_card_margin">10dp</dimen>
     <dimen name="conta_card_radius">3dp</dimen>
     <dimen name="conta_item_text_size">15sp</dimen>
     <dimen name="saldo_total_text_size">20sp</dimen>
+
+    <dimen name="recycler_item_margin_bottom">8dp</dimen>
+    <dimen name="recycler_item_margin_top">3dp</dimen>
+    <dimen name="item_margin_start_end">8dp</dimen>
+    <dimen name="nome_transacao_text_size">18sp</dimen>
 </resources>

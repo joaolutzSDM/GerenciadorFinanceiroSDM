@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/nomeTransacaoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/item_margin_start_end"
+        android:layout_marginTop="@dimen/recycler_item_margin_top"
+        android:text="@string/nome_transacao"
+        android:textSize="@dimen/nome_transacao_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tipoTransacaoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/nomeTransacaoTextView"
+        android:layout_marginStart="@dimen/item_margin_start_end"
+        android:layout_marginBottom="@dimen/recycler_item_margin_bottom"
+        android:text="@string/tipo_transacao"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/valorTransacaoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tipoTransacaoTextView"
+        android:layout_alignBottom="@+id/tipoTransacaoTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/nomeTransacaoTextView"
+        android:textAlignment="textEnd"
+        android:layout_marginEnd="@dimen/item_margin_start_end"
+        android:text="@string/valor_transacao"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

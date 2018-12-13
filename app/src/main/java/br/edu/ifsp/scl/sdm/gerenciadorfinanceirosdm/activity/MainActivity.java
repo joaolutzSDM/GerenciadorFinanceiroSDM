@@ -1,6 +1,7 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -13,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,6 +23,8 @@ import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.R;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.adapter.ContaAdapter;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.adapter.listener.ContaClickListener;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model.Conta;
+import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model.NaturezaTransacao;
+import br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model.Transacao;
 
 public class MainActivity extends AppCompatActivity implements ContaClickListener {
 
@@ -69,6 +71,19 @@ public class MainActivity extends AppCompatActivity implements ContaClickListene
             Conta conta = new Conta();
             conta.setNome(nomeContaEditText.getText().toString());
             conta.setSaldo(new BigDecimal(saldoInicialEditText.getText().toString()));
+            //TODO REMOVER CÓDIGO - APENAS PARA TESTES
+            Transacao tr = new Transacao();
+            tr.setNome("Transação Teste");
+            tr.setNaturezaTransacao(NaturezaTransacao.CREDITO);
+            tr.setTipo("Salário");
+            tr.setValor(new BigDecimal(1800));
+            conta.getTransacoes().add(tr);
+            Transacao tr2 = new Transacao();
+            tr2.setNome("Transação Teste 2");
+            tr2.setNaturezaTransacao(NaturezaTransacao.DEBITO);
+            tr2.setTipo("Alimentação");
+            tr2.setValor(new BigDecimal(35));
+            conta.getTransacoes().add(tr2);
             contas.add(conta);
             if(emptyListTextView.getVisibility() == View.VISIBLE) {
                 emptyListTextView.setVisibility(View.INVISIBLE);
@@ -104,7 +119,9 @@ public class MainActivity extends AppCompatActivity implements ContaClickListene
 
     @Override
     public void onContaClick(Conta conta) {
-        Toast.makeText(this, "Clicou na conta",Toast.LENGTH_LONG).show();
+        Intent i = new Intent(this, TransacaoActivity.class);
+        i.putExtra("conta", conta);
+        startActivity(i);
     }
 
     @Override
@@ -121,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements ContaClickListene
         for(Conta c : contas) {
             total = total.add(c.getSaldo());
         }
-        saldoTotalTextView.setText(Conta.getSaldoString(total));
+        saldoTotalTextView.setText(Conta.getCurrencyBigDecimal(total));
     }
 
     private void showListDialog(Integer listResId, DialogInterface.OnClickListener listener) {

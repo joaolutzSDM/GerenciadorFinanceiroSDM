@@ -31,10 +31,10 @@ public class Conta implements Serializable {
     }
 
     public String getSaldoFormatado() {
-        return getSaldoString(saldo);
+        return getCurrencyBigDecimal(saldo);
     }
 
-    public static String getSaldoString(BigDecimal valor) {
+    public static String getCurrencyBigDecimal(BigDecimal valor) {
         Locale locale = new Locale("pt", "BR");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
         String formatado = nf.format(valor);
@@ -67,7 +67,7 @@ public class Conta implements Serializable {
     }
 
     public boolean isSaldoPositivo() {
-        return saldo.compareTo(BigDecimal.ZERO) == 0;
+        return saldo.compareTo(BigDecimal.ZERO) >= 0;
     }
 
 }

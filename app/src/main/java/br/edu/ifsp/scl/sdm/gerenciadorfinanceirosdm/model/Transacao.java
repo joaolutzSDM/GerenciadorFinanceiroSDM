@@ -1,10 +1,14 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model;
 
-public class Transacao {
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class Transacao implements Serializable {
 
     private String nome;
     private NaturezaTransacao naturezaTransacao;
     private String tipo;
+    private BigDecimal valor;
     private boolean periodica;
 
     public String getNome() {
@@ -29,6 +33,14 @@ public class Transacao {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public boolean isPeriodica() {

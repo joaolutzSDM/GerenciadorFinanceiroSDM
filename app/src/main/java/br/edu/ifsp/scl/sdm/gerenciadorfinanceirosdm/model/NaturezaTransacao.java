@@ -1,5 +1,7 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceirosdm.model;
 
-public enum NaturezaTransacao {
+import java.io.Serializable;
+
+public enum NaturezaTransacao implements Serializable {
     CREDITO, DEBITO
 }

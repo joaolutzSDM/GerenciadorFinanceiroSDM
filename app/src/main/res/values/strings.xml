@@ -2,6 +2,7 @@
     <string name="app_name">GerenciadorFinanceiroSDM</string>
     <string name="action_settings">Settings</string>
     <string name="clique_no_bot_o_abaixo_para_adicionar_uma_conta">Clique no botão abaixo para adicionar uma conta</string>
+    <string name="clique_no_bot_o_abaixo_para_adicionar_uma_transacao">Clique no botão abaixo para adicionar uma transação</string>
     <string name="saldo_inicial">Saldo inicial</string>
     <string name="nome_da_conta">Nome da conta</string>
     <string name="btnOK">OK</string>
@@ -12,4 +13,10 @@
     <string-array name="gerenciar_conta">
         <item>Remover Conta</item>
     </string-array>
+    <string name="title_activity_transacao">TransacaoActivity</string>
+    <string name="valor_transacao">Valor Transação</string>
+    <string name="nome_transacao">Nome Transação</string>
+    <string name="tipo_transacao">Tipo Transação</string>
+    <string name="credito">Crédito</string>
+    <string name="debito">Débito</string>
 </resources>
